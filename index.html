@@ -92,7 +92,7 @@ svg{max-width:100%;height:auto}
 
 <div class="step" id="step3">
 <h3>Investigation 3: Find Angle B</h3>
-<p>Using angle B as the reference angle, choose the best inverse trig function.</p>
+<p>Using the original given information in the triangle, what is the best inverse trigonometric function to use in order to find the measure of angle B?</p>
 <select id="inverseChoice">
 <option value="">Choose one</option>
 <option value="asin">sin⁻¹</option>
@@ -112,9 +112,9 @@ svg{max-width:100%;height:auto}
 </div>
 
 <div class="step" id="step5">
-<h3>Investigation 5: Check Reasonableness</h3>
-<p>Explain why your answers make sense for this right triangle.</p>
-<textarea id="reasonExplain" placeholder="Mention the hypotenuse, angle sum, or side lengths."></textarea>
+<h3>Investigation 5: Choosing the Best Method</h3>
+<p>Suppose you need to find a missing side of a right triangle. How do you know when to use the Pythagorean Theorem instead of a trigonometric ratio?</p>
+<textarea id="reasonExplain" placeholder="Explain when each method is useful."></textarea>
 </div>
 
 <div class="yellow" style="padding:16px;border-radius:8px;margin-top:18px;">
@@ -197,7 +197,7 @@ if(!step4OK)errors.push("Investigation 4");
 const reasonText=clean(document.getElementById("reasonExplain").value);
 const step5OK=
 reasonText.length>=15 &&
-hasAny(reasonText,["hypotenuse","longest","90","180","sum","reasonable","angle"]);
+hasAny(reasonText,["angle","two sides","three sides","pythagorean","trig","ratio"]);
 markStep("step5",step5OK);
 if(!step5OK)errors.push("Investigation 5");
 
