@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unit 4 Week 2 Prove It | Solve the Triangle Investigation</title>
+<title>Unit 4 Week 2 Prove It | Trig Ratio Investigation</title>
 <style>
 body{font-family:Arial,sans-serif;background:#f6f9fb;color:#1f2933;margin:0;line-height:1.6}
 .wrap{max-width:1000px;margin:auto;padding:24px}
@@ -30,12 +30,12 @@ svg{max-width:100%;height:auto}
 
 <div class="hero">
 <h1>Geometry | Unit 4 | Week 2</h1>
-<p>Prove It! — Solve the Triangle Investigation</p>
+<p>Prove It! — Solving with Trigonometric Ratios</p>
 </div>
 
 <div id="start" class="card">
 <h2>Start Your Investigation</h2>
-<p>Enter your first and last name. You will use one right triangle to solve for missing side and angle measures.</p>
+<p>Enter your first and last name. You will use one right triangle to solve for missing side lengths using trigonometric ratios.</p>
 <p><strong>Recording Reminder:</strong> Submit a 3–5 minute screen recording in Canvas explaining your work out loud.</p>
 <input id="studentName" placeholder="First and last name">
 <br>
@@ -46,75 +46,82 @@ svg{max-width:100%;height:auto}
 <div id="activity" class="card hidden">
 <h2>Use △ABC for the Entire Investigation</h2>
 
-<svg width="100%" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle ABC with right angle C, side AC equals 8, side BC equals 15, and hypotenuse AB unknown">
+<svg width="100%" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle ABC with right angle C, angle B equals 40 degrees, side BC equals 9, and missing sides AC and AB">
 <rect width="900" height="360" fill="#f6f9fb"/>
-<text x="450" y="35" text-anchor="middle" font-size="24" font-family="Arial" font-weight="bold" fill="#0f2d44">Solve △ABC</text>
+<text x="450" y="35" text-anchor="middle" font-size="24" font-family="Arial" font-weight="bold" fill="#0f2d44">Solve △ABC Using Trigonometric Ratios</text>
 
-<polygon points="260,70 260,280 700,280" fill="#fff" stroke="#0f2d44" stroke-width="4"/>
-<line x1="260" y1="70" x2="700" y2="280" stroke="#2f80a8" stroke-width="8"/>
-<line x1="260" y1="70" x2="260" y2="280" stroke="#d9534f" stroke-width="8"/>
+<polygon points="260,80 260,280 700,280" fill="#fff" stroke="#0f2d44" stroke-width="4"/>
+<line x1="260" y1="80" x2="700" y2="280" stroke="#2f80a8" stroke-width="8"/>
+<line x1="260" y1="80" x2="260" y2="280" stroke="#d9534f" stroke-width="8"/>
 <line x1="260" y1="280" x2="700" y2="280" stroke="#3ca65c" stroke-width="8"/>
 
 <path d="M260 245 L295 245 L295 280" fill="none" stroke="#0f2d44" stroke-width="4"/>
+<path d="M650 280 Q620 250 585 255" fill="none" stroke="#f2b705" stroke-width="5"/>
 
-<text x="230" y="65" font-size="26" font-family="Arial" font-weight="bold" fill="#0f2d44">A</text>
+<text x="230" y="75" font-size="26" font-family="Arial" font-weight="bold" fill="#0f2d44">A</text>
 <text x="710" y="305" font-size="26" font-family="Arial" font-weight="bold" fill="#0f2d44">B</text>
 <text x="230" y="305" font-size="26" font-family="Arial" font-weight="bold" fill="#0f2d44">C</text>
 
-<text x="225" y="180" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#d9534f">8</text>
-<text x="485" y="315" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#3ca65c">15</text>
-<text x="505" y="150" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#2f80a8">x</text>
+<text x="705" y="250" font-size="22" font-family="Arial" font-weight="bold" fill="#0f2d44">40°</text>
+<text x="225" y="180" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#d9534f">x</text>
+<text x="485" y="315" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#3ca65c">9</text>
+<text x="505" y="155" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#2f80a8">h</text>
 <text x="285" y="260" font-size="20" font-family="Arial" font-weight="bold" fill="#0f2d44">90°</text>
 </svg>
 
 <div class="step" id="step1">
 <h3>Investigation 1: Identify the Given Information</h3>
-<p>What side length is AC?</p>
-<input id="ac" class="small">
-<p>What side length is BC?</p>
-<input id="bc" class="small">
-<p>Which angle is the right angle?</p>
-<select id="rightAngle">
+<p>What is the reference angle?</p>
+<input id="refAngle" class="small">
+<p>What side length is given?</p>
+<input id="givenSide" class="small">
+<p>Is the given side opposite, adjacent, or hypotenuse to the reference angle?</p>
+<select id="givenSideType">
 <option value="">Choose one</option>
-<option value="A">∠A</option>
-<option value="B">∠B</option>
-<option value="C">∠C</option>
+<option value="opposite">Opposite</option>
+<option value="adjacent">Adjacent</option>
+<option value="hypotenuse">Hypotenuse</option>
 </select>
 </div>
 
 <div class="step" id="step2">
-<h3>Investigation 2: Find the Missing Side</h3>
-<p>Find hypotenuse AB. Round to the nearest tenth if needed.</p>
-<input id="hyp" class="small">
-<p>Briefly explain how you found AB.</p>
-<textarea id="hypExplain"></textarea>
+<h3>Investigation 2: Choose the Ratio for the Opposite Side</h3>
+<p>You need to find side AC, labeled x. Which trigonometric ratio should you use?</p>
+<select id="ratioForOpposite">
+<option value="">Choose one</option>
+<option value="sin">Sine</option>
+<option value="cos">Cosine</option>
+<option value="tan">Tangent</option>
+</select>
+<p>Briefly explain why this ratio matches the sides involved.</p>
+<textarea id="ratioExplain"></textarea>
 </div>
 
 <div class="step" id="step3">
-<h3>Investigation 3: Find Angle B</h3>
-<p>Using the original given information in the triangle, what is the best inverse trigonometric function to use in order to find the measure of angle B?</p>
-<select id="inverseChoice">
-<option value="">Choose one</option>
-<option value="asin">sin⁻¹</option>
-<option value="acos">cos⁻¹</option>
-<option value="atan">tan⁻¹</option>
-</select>
-<p>Find m∠B to the nearest tenth of a degree.</p>
-<input id="angleB" class="small">
+<h3>Investigation 3: Find the Opposite Side</h3>
+<p>Find side AC, labeled x. Round to the nearest tenth.</p>
+<input id="oppositeSide" class="small">
 </div>
 
 <div class="step" id="step4">
-<h3>Investigation 4: Find Angle A</h3>
-<p>Find m∠A to the nearest tenth of a degree.</p>
-<input id="angleA" class="small">
-<p>Briefly explain how you found angle A.</p>
-<textarea id="angleExplain"></textarea>
+<h3>Investigation 4: Find the Hypotenuse</h3>
+<p>Use a trigonometric ratio to find hypotenuse AB, labeled h. Round to the nearest tenth.</p>
+<select id="ratioForHypotenuse">
+<option value="">Choose one</option>
+<option value="sin">Sine</option>
+<option value="cos">Cosine</option>
+<option value="tan">Tangent</option>
+</select>
+<p>Hypotenuse AB:</p>
+<input id="hypotenuse" class="small">
+<p>Briefly explain your setup.</p>
+<textarea id="hypExplain"></textarea>
 </div>
 
 <div class="step" id="step5">
-<h3>Investigation 5: Choosing the Best Method</h3>
-<p>Suppose you need to find a missing side of a right triangle. How do you know when to use the Pythagorean Theorem instead of a trigonometric ratio?</p>
-<textarea id="reasonExplain" placeholder="Explain when each method is useful."></textarea>
+<h3>Investigation 5: Explain Your Strategy</h3>
+<p>How do you know which trigonometric ratio to choose when solving for a missing side?</p>
+<textarea id="strategyExplain" placeholder="Explain how the reference angle and known sides help you choose."></textarea>
 </div>
 
 <div class="yellow" style="padding:16px;border-radius:8px;margin-top:18px;">
@@ -165,39 +172,38 @@ el.style.background=ok?"#eefaf1":"#fff8e6";
 function completeInvestigation(){
 let errors=[];
 
-const step1OK=
-clean(document.getElementById("ac").value)==="8" &&
-clean(document.getElementById("bc").value)==="15" &&
-document.getElementById("rightAngle").value==="C";
+const step1OK =
+(clean(document.getElementById("refAngle").value)==="40" || clean(document.getElementById("refAngle").value)==="40°") &&
+clean(document.getElementById("givenSide").value)==="9" &&
+document.getElementById("givenSideType").value==="adjacent";
 markStep("step1",step1OK);
 if(!step1OK)errors.push("Investigation 1");
 
-const hypText=clean(document.getElementById("hypExplain").value);
-const step2OK=
-close(document.getElementById("hyp").value,17,.15) &&
-hypText.length>=15 &&
-hasAny(hypText,["pythagorean","square","8","15","17","hypotenuse"]);
+const ratioText=clean(document.getElementById("ratioExplain").value);
+const step2OK =
+document.getElementById("ratioForOpposite").value==="tan" &&
+ratioText.length>=15 &&
+hasAny(ratioText,["opposite","adjacent","tangent","tan"]);
 markStep("step2",step2OK);
 if(!step2OK)errors.push("Investigation 2");
 
-const step3OK=
-document.getElementById("inverseChoice").value==="atan" &&
-close(document.getElementById("angleB").value,28.1,.2);
+const step3OK = close(document.getElementById("oppositeSide").value,7.6,.15);
 markStep("step3",step3OK);
 if(!step3OK)errors.push("Investigation 3");
 
-const angleText=clean(document.getElementById("angleExplain").value);
-const step4OK=
-close(document.getElementById("angleA").value,61.9,.2) &&
-angleText.length>=15 &&
-hasAny(angleText,["90","complement","triangle","180","subtract"]);
+const hypText=clean(document.getElementById("hypExplain").value);
+const step4OK =
+document.getElementById("ratioForHypotenuse").value==="cos" &&
+close(document.getElementById("hypotenuse").value,11.7,.15) &&
+hypText.length>=15 &&
+hasAny(hypText,["adjacent","hypotenuse","cos","cosine"]);
 markStep("step4",step4OK);
 if(!step4OK)errors.push("Investigation 4");
 
-const reasonText=clean(document.getElementById("reasonExplain").value);
-const step5OK=
-reasonText.length>=15 &&
-hasAny(reasonText,["angle","two sides","three sides","pythagorean","trig","ratio"]);
+const strategyText=clean(document.getElementById("strategyExplain").value);
+const step5OK =
+strategyText.length>=15 &&
+hasAny(strategyText,["reference","angle","known","given","opposite","adjacent","hypotenuse","ratio"]);
 markStep("step5",step5OK);
 if(!step5OK)errors.push("Investigation 5");
 
