@@ -1,224 +1,1945 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unit 4 Week 2 Prove It | Trig Ratio Investigation</title>
-<style>
-body{font-family:Arial,sans-serif;background:#f6f9fb;color:#1f2933;margin:0;line-height:1.6}
-.wrap{max-width:1000px;margin:auto;padding:24px}
-.hero{background:#0f2d44;color:white;padding:24px;border-radius:12px}
-.card{background:white;border-left:6px solid #2f80a8;padding:20px;margin-top:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.green{border-left-color:#3ca65c;background:#eefaf1}
-.yellow{border-left-color:#f2b705;background:#fff8e6}
-.step{background:#f6f9fb;border:1px solid #d6e6ef;border-radius:8px;padding:16px;margin-top:14px}
-button{background:#0f2d44;color:white;border:0;border-radius:8px;padding:12px 18px;font-size:16px;cursor:pointer;margin:6px}
-button:hover{background:#174766}
-input,textarea,select{padding:10px;border:1px solid #b8c7d1;border-radius:6px;font-size:16px;width:95%;max-width:620px}
-textarea{min-height:80px}
-.small{max-width:180px}
-.hidden{display:none}
-.feedback{font-weight:bold;margin-top:12px}
-.wrong{color:#b42318}
-.stars{font-size:34px;color:#f2b705}
-svg{max-width:100%;height:auto}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Solve the Right Triangle Investigation Lab</title>
+
+  <style>
+    :root {
+      --navy: #0f2d44;
+      --blue: #2f80a8;
+      --light-blue: #f0f7fb;
+      --green: #3ca65c;
+      --light-green: #eefaf1;
+      --yellow: #f2b705;
+      --light-yellow: #fff8e6;
+      --purple: #8f5aa5;
+      --light-purple: #f3e5f5;
+      --gray: #f6f9fb;
+      --border: #d6e6ef;
+      --text: #1f2933;
+      --red: #b42318;
+      --light-red: #fff1f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #edf2f7;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button:focus,
+    input:focus,
+    select:focus,
+    a:focus {
+      outline: 4px solid rgba(242, 183, 5, 0.45);
+      outline-offset: 2px;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .hero {
+      padding: 26px;
+      border-radius: 14px;
+      background: var(--navy);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(15, 45, 68, 0.2);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .hero p {
+      margin: 7px 0 0;
+      font-size: 18px;
+    }
+
+    .card {
+      margin-top: 18px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 5px 18px rgba(15, 45, 68, 0.08);
+    }
+
+    .blue-card {
+      border-left: 6px solid var(--blue);
+      background: var(--light-blue);
+    }
+
+    .green-card {
+      border-left: 6px solid var(--green);
+      background: var(--light-green);
+    }
+
+    .yellow-card {
+      border-left: 6px solid var(--yellow);
+      background: var(--light-yellow);
+    }
+
+    .purple-card {
+      border-left: 6px solid var(--purple);
+      background: var(--light-purple);
+    }
+
+    h2,
+    h3 {
+      color: var(--navy);
+    }
+
+    h2 {
+      margin-top: 0;
+      padding-bottom: 7px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--navy);
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .button.secondary {
+      background: var(--blue);
+    }
+
+    .button:hover:not(:disabled) {
+      filter: brightness(1.08);
+    }
+
+    .button:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+    }
+
+    .name-input,
+    .number-input,
+    .select-input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #aebfca;
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--text);
+    }
+
+    .number-input {
+      max-width: 300px;
+    }
+
+    label {
+      display: block;
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .feedback {
+      min-height: 25px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .good {
+      color: #236b35;
+    }
+
+    .bad {
+      color: var(--red);
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .progress-track {
+      flex: 1;
+      min-width: 220px;
+      height: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #ffffff;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: var(--green);
+      transition: width 0.25s ease;
+    }
+
+    .progress-label {
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .trail {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(100px, 1fr));
+      gap: 8px;
+      margin: 17px 0;
+    }
+
+    .trail-step {
+      padding: 9px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--gray);
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .trail-step.active {
+      border-color: var(--blue);
+      background: var(--light-blue);
+    }
+
+    .trail-step.done {
+      border-color: var(--green);
+      background: var(--light-green);
+      color: #236b35;
+    }
+
+    .mission-brief {
+      padding: 14px;
+      border-left: 5px solid var(--yellow);
+      border-radius: 8px;
+      background: var(--light-yellow);
+    }
+
+    .diagram {
+      overflow-x: auto;
+      margin: 16px 0;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #ffffff;
+      text-align: center;
+    }
+
+    .diagram svg {
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+    }
+
+    .diagram-note {
+      margin: 6px 0 0;
+      color: #536471;
+      font-size: 14px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .question {
+      margin: 14px 0;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #ffffff;
+    }
+
+    .question.correct {
+      border: 2px solid var(--green);
+      background: #f4fff6;
+    }
+
+    .question.incorrect {
+      border: 2px solid var(--red);
+      background: var(--light-red);
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    legend {
+      margin-bottom: 9px;
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .choices {
+      display: grid;
+      gap: 8px;
+    }
+
+    .choice {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--gray);
+      cursor: pointer;
+    }
+
+    .choice input {
+      margin-top: 4px;
+    }
+
+    .navigation {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .calculator-link {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--blue);
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .certificate {
+      padding: 30px;
+      border: 8px double var(--navy);
+      border-radius: 10px;
+      background: #ffffff;
+      text-align: center;
+    }
+
+    .certificate h2 {
+      border: 0;
+      font-size: 30px;
+    }
+
+    .certificate-name {
+      display: inline-block;
+      min-width: 65%;
+      margin: 12px 0;
+      padding: 8px 16px;
+      border-bottom: 2px solid var(--navy);
+      color: var(--navy);
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .certificate-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(190px, 1fr));
+      gap: 12px;
+      max-width: 760px;
+      margin: 22px auto;
+      text-align: left;
+    }
+
+    .certificate-item {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--gray);
+    }
+
+    .verification {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 2px solid var(--green);
+      border-radius: 8px;
+      background: var(--light-green);
+      color: var(--navy);
+      font-family: "Courier New", monospace;
+      font-size: 19px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 10px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .trail {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .certificate-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .certificate-name {
+        font-size: 22px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #certificate-section,
+      #certificate-section * {
+        visibility: visible;
+      }
+
+      #certificate-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .certificate {
+        min-height: 8.5in;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrap">
+<div class="page">
+  <header class="hero">
+    <h1>Solve the Right Triangle Investigation Lab</h1>
+    <p>Geometry | Unit 4 | Week 2 Prove It!</p>
+  </header>
 
-<div class="hero">
-<h1>Geometry | Unit 4 | Week 2</h1>
-<p>Prove It! — Solving with Trigonometric Ratios</p>
-</div>
+  <section class="card blue-card" id="intro-section">
+    <h2>Investigation Briefing</h2>
 
-<div id="start" class="card">
-<h2>Start Your Investigation</h2>
-<p>Enter your first and last name. You will use one right triangle to solve for missing side lengths using trigonometric ratios.</p>
-<p><strong>Recording Reminder:</strong> Submit a 3–5 minute screen recording in Canvas explaining your work out loud.</p>
-<input id="studentName" placeholder="First and last name">
-<br>
-<button onclick="startActivity()">Start Investigation</button>
-<p id="nameError" class="feedback wrong"></p>
-</div>
+    <p>
+      Analyze one randomized right triangle, determine the correct
+      methods, find its missing side, calculate both acute angles, and
+      evaluate whether your results are reasonable.
+    </p>
 
-<div id="activity" class="card hidden">
-<h2>Use △ABC for the Entire Investigation</h2>
+    <p>
+      You may correct mistakes until every response is correct.
+    </p>
 
-<svg width="100%" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle ABC with right angle C, angle B equals 40 degrees, side BC equals 9, and missing sides AC and AB">
-<rect width="900" height="360" fill="#f6f9fb"/>
-<text x="450" y="35" text-anchor="middle" font-size="24" font-family="Arial" font-weight="bold" fill="#0f2d44">Solve △ABC Using Trigonometric Ratios</text>
+    <div class="card yellow-card">
+      <h3 style="margin-top: 0;">Certificate Requirement</h3>
+      <p>☐ 12 of 12 investigation responses correct</p>
+      <p>☐ 4 of 4 final mastery responses correct</p>
+      <p style="margin-bottom: 0;">
+        Your certificate appears only after full mastery.
+      </p>
+    </div>
 
-<polygon points="260,80 260,280 700,280" fill="#fff" stroke="#0f2d44" stroke-width="4"/>
-<line x1="260" y1="80" x2="700" y2="280" stroke="#2f80a8" stroke-width="8"/>
-<line x1="260" y1="80" x2="260" y2="280" stroke="#d9534f" stroke-width="8"/>
-<line x1="260" y1="280" x2="700" y2="280" stroke="#3ca65c" stroke-width="8"/>
+    <label for="student-name">First and last name</label>
 
-<path d="M260 245 L295 245 L295 280" fill="none" stroke="#0f2d44" stroke-width="4"/>
-<path d="M650 280 Q620 250 585 255" fill="none" stroke="#f2b705" stroke-width="5"/>
+    <input
+      class="name-input"
+      id="student-name"
+      type="text"
+      maxlength="80"
+      autocomplete="name"
+      placeholder="Example: Jordan Martinez"
+    >
 
-<text x="230" y="75" font-size="26" font-family="Arial" font-weight="bold" fill="#0f2d44">A</text>
-<text x="710" y="305" font-size="26" font-family="Arial" font-weight="bold" fill="#0f2d44">B</text>
-<text x="230" y="305" font-size="26" font-family="Arial" font-weight="bold" fill="#0f2d44">C</text>
+    <div
+      class="feedback bad"
+      id="name-feedback"
+      role="alert"
+      aria-live="polite"
+    ></div>
 
-<text x="705" y="250" font-size="22" font-family="Arial" font-weight="bold" fill="#0f2d44">40°</text>
-<text x="225" y="180" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#d9534f">x</text>
-<text x="485" y="315" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#3ca65c">9</text>
-<text x="505" y="155" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#2f80a8">h</text>
-<text x="285" y="260" font-size="20" font-family="Arial" font-weight="bold" fill="#0f2d44">90°</text>
-</svg>
+    <button class="button" id="start-button" type="button">
+      Begin the Investigation
+    </button>
+  </section>
 
-<div class="step" id="step1">
-<h3>Investigation 1: Identify the Given Information</h3>
-<p>What is the measure of the reference angle?</p>
-<input id="refAngle" class="small">
-<p>What the measure of the side length is given?</p>
-<input id="givenSide" class="small">
-<p>Is the given side opposite, adjacent, or hypotenuse to the reference angle?</p>
-<select id="givenSideType">
-<option value="">Choose one</option>
-<option value="opposite">Opposite</option>
-<option value="adjacent">Adjacent</option>
-<option value="hypotenuse">Hypotenuse</option>
-</select>
-</div>
+  <section class="card hidden" id="activity-section">
+    <div class="topbar">
+      <div
+        class="progress-track"
+        id="progress-track"
+        role="progressbar"
+        aria-label="Activity progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+      >
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
 
-<div class="step" id="step2">
-<h3>Investigation 2: Choose the Ratio for the Opposite Side</h3>
-<p>You need to find the measure of side AC, labeled x. Which trigonometric ratio should you use?</p>
-<select id="ratioForOpposite">
-<option value="">Choose one</option>
-<option value="sin">Sine</option>
-<option value="cos">Cosine</option>
-<option value="tan">Tangent</option>
-</select>
-<p>Briefly explain why this ratio matches the sides involved.</p>
-<textarea id="ratioExplain"></textarea>
-</div>
+      <div class="progress-label" id="progress-label">
+        Investigation 1 of 4
+      </div>
+    </div>
 
-<div class="step" id="step3">
-<h3>Investigation 3: Find the Opposite Side</h3>
-<p>Find the measure of side AC, labeled x. Round to the nearest tenth.</p>
-<input id="oppositeSide" class="small">
-</div>
+    <div class="trail">
+      <div class="trail-step" id="trail-0">Analyze</div>
+      <div class="trail-step" id="trail-1">Missing Side</div>
+      <div class="trail-step" id="trail-2">Missing Angles</div>
+      <div class="trail-step" id="trail-3">Reasonableness</div>
+      <div class="trail-step" id="trail-4">Final Check</div>
+      <div class="trail-step" id="trail-5">Certificate</div>
+    </div>
 
-<div class="step" id="step4">
-<h3>Investigation 4: Find the Hypotenuse</h3>
-<p>Use a trigonometric ratio to find the measure of hypotenuse AB, labeled h. Round to the nearest tenth.</p>
-<select id="ratioForHypotenuse">
-<option value="">Choose one</option>
-<option value="sin">Sine</option>
-<option value="cos">Cosine</option>
-<option value="tan">Tangent</option>
-</select>
-<p>Hypotenuse AB:</p>
-<input id="hypotenuse" class="small">
-<p>Briefly explain your setup.</p>
-<textarea id="hypExplain"></textarea>
-</div>
+    <div id="mission-container"></div>
 
-<div class="step" id="step5">
-<h3>Investigation 5: Explain Your Strategy</h3>
-<p>How do you know which trigonometric ratio to choose when solving for a missing side?</p>
-<textarea id="strategyExplain" placeholder="Explain how the reference angle and known sides help you choose."></textarea>
-</div>
+    <p style="text-align: center;">
+      <a
+        class="calculator-link"
+        href="https://www.desmos.com/scientific"
+        target="_blank"
+        rel="noopener"
+      >
+        Open Desmos Scientific Calculator
+      </a>
+    </p>
 
-<div class="yellow" style="padding:16px;border-radius:8px;margin-top:18px;">
-<p><strong>Before you complete:</strong> Make sure your screen recording explains each investigation clearly.</p>
-<button onclick="completeInvestigation()">Complete Investigation</button>
-<p id="finalFeedback" class="feedback"></p>
-</div>
+    <div
+      class="feedback"
+      id="mission-feedback"
+      role="status"
+      aria-live="polite"
+    ></div>
 
-</div>
+    <div class="navigation">
+      <button class="button" id="check-mission-button" type="button">
+        Check Investigation
+      </button>
 
-<div id="done" class="card green hidden" style="text-align:center;">
-<div class="stars">★★★★★</div>
-<h2>Investigation Complete!</h2>
-<p><strong>Student:</strong> <span id="completeName"></span></p>
-<p>You are ready to submit your screen recording in Canvas.</p>
-<p>Make sure your recording explains why your trig choices and calculations make sense.</p>
-</div>
+      <button
+        class="button secondary"
+        id="next-mission-button"
+        type="button"
+        disabled
+      >
+        Next Investigation
+      </button>
+    </div>
+  </section>
 
+  <section class="card purple-card hidden" id="mastery-section">
+    <h2>Final Mastery Check</h2>
+
+    <p>
+      Answer all four questions correctly to unlock your certificate.
+    </p>
+
+    <div id="mastery-container"></div>
+
+    <div
+      class="feedback"
+      id="mastery-feedback"
+      role="status"
+      aria-live="polite"
+    ></div>
+
+    <button class="button" id="check-mastery-button" type="button">
+      Check Final Answers
+    </button>
+  </section>
+
+  <section class="card green-card hidden" id="certificate-section">
+    <div class="certificate">
+      <p style="margin: 0; color: #2f80a8; font-weight: bold;">
+        GEOMETRY | UNIT 4 | WEEK 2
+      </p>
+
+      <h2>Solve the Right Triangle Certificate of Mastery</h2>
+
+      <p>This certificate is awarded to</p>
+
+      <div class="certificate-name" id="certificate-name"></div>
+
+      <p>
+        for successfully completing the
+        <strong>Solve the Right Triangle Investigation Lab</strong>.
+      </p>
+
+      <div class="certificate-grid">
+        <div class="certificate-item">
+          <strong>Completion Date</strong><br>
+          <span id="certificate-date"></span>
+        </div>
+
+        <div class="certificate-item">
+          <strong>Investigation Responses</strong><br>
+          12 of 12 correct
+        </div>
+
+        <div class="certificate-item">
+          <strong>Final Mastery Check</strong><br>
+          4 of 4 correct
+        </div>
+
+        <div class="certificate-item">
+          <strong>Overall Result</strong><br>
+          Mastery demonstrated
+        </div>
+      </div>
+
+      <p><strong>Verification Code</strong></p>
+
+      <div class="verification" id="verification-code"></div>
+
+      <p style="margin-top: 22px;">
+        The student demonstrated proficiency solving right triangles
+        with the Pythagorean Theorem, inverse trigonometric functions,
+        and complementary-angle relationships.
+      </p>
+    </div>
+
+    <div class="navigation no-print">
+      <button class="button" id="print-button" type="button">
+        Print or Save as PDF
+      </button>
+
+      <button
+        class="button secondary"
+        id="restart-button"
+        type="button"
+      >
+        Start a New Attempt
+      </button>
+    </div>
+  </section>
 </div>
 
 <script>
-let student="";
+"use strict";
 
-function startActivity(){
-student=document.getElementById("studentName").value.trim();
-if(student.split(" ").length<2){
-document.getElementById("nameError").textContent="Please enter your first and last name.";
-return;
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+let studentName = "";
+let triangleData = null;
+let missions = [];
+let currentMissionIndex = 0;
+
+const completedMissions = new Set();
+
+const introSection = document.getElementById("intro-section");
+const activitySection = document.getElementById("activity-section");
+const masterySection = document.getElementById("mastery-section");
+const certificateSection =
+  document.getElementById("certificate-section");
+
+const studentNameInput =
+  document.getElementById("student-name");
+
+const nameFeedback =
+  document.getElementById("name-feedback");
+
+const missionContainer =
+  document.getElementById("mission-container");
+
+const missionFeedback =
+  document.getElementById("mission-feedback");
+
+const checkMissionButton =
+  document.getElementById("check-mission-button");
+
+const nextMissionButton =
+  document.getElementById("next-mission-button");
+
+const masteryContainer =
+  document.getElementById("mastery-container");
+
+const masteryFeedback =
+  document.getElementById("mastery-feedback");
+
+const checkMasteryButton =
+  document.getElementById("check-mastery-button");
+
+function randomChoice(array) {
+  return array[Math.floor(Math.random() * array.length)];
 }
-document.getElementById("start").classList.add("hidden");
-document.getElementById("activity").classList.remove("hidden");
+
+function shuffle(array) {
+  const copy = [...array];
+
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const randomIndex =
+      Math.floor(Math.random() * (index + 1));
+
+    [copy[index], copy[randomIndex]] =
+      [copy[randomIndex], copy[index]];
+  }
+
+  return copy;
 }
 
-function clean(v){return String(v).trim().toLowerCase();}
-function num(v){return Number(String(v).trim());}
-function close(v,target,tol=.15){return Math.abs(num(v)-target)<=tol;}
-
-function hasAny(text,words){
-return words.some(w=>text.includes(w));
+function normalizeName(value) {
+  return value.trim().replace(/\s+/g, " ");
 }
 
-function markStep(id,ok){
-const el=document.getElementById(id);
-el.style.border=ok?"2px solid #3ca65c":"2px solid #d9534f";
-el.style.background=ok?"#eefaf1":"#fff8e6";
+function validFullName(value) {
+  const parts = normalizeName(value).split(" ");
+
+  return (
+    parts.length >= 2 &&
+    parts.every((part) => part.length >= 2)
+  );
 }
 
-function completeInvestigation(){
-let errors=[];
-
-const step1OK =
-(clean(document.getElementById("refAngle").value)==="40" || clean(document.getElementById("refAngle").value)==="40°") &&
-clean(document.getElementById("givenSide").value)==="9" &&
-document.getElementById("givenSideType").value==="adjacent";
-markStep("step1",step1OK);
-if(!step1OK)errors.push("Investigation 1");
-
-const ratioText=clean(document.getElementById("ratioExplain").value);
-const step2OK =
-document.getElementById("ratioForOpposite").value==="tan" &&
-ratioText.length>=15 &&
-hasAny(ratioText,["opposite","adjacent","tangent","tan"]);
-markStep("step2",step2OK);
-if(!step2OK)errors.push("Investigation 2");
-
-const step3OK = close(document.getElementById("oppositeSide").value,7.6,.15);
-markStep("step3",step3OK);
-if(!step3OK)errors.push("Investigation 3");
-
-const hypText=clean(document.getElementById("hypExplain").value);
-const step4OK =
-document.getElementById("ratioForHypotenuse").value==="cos" &&
-close(document.getElementById("hypotenuse").value,11.7,.15) &&
-hypText.length>=15 &&
-hasAny(hypText,["adjacent","hypotenuse","cos","cosine"]);
-markStep("step4",step4OK);
-if(!step4OK)errors.push("Investigation 4");
-
-const strategyText=clean(document.getElementById("strategyExplain").value);
-const step5OK =
-strategyText.length>=15 &&
-hasAny(strategyText,["reference","angle","known","given","opposite","adjacent","hypotenuse","ratio"]);
-markStep("step5",step5OK);
-if(!step5OK)errors.push("Investigation 5");
-
-const fb=document.getElementById("finalFeedback");
-
-if(errors.length===0){
-document.getElementById("activity").classList.add("hidden");
-document.getElementById("done").classList.remove("hidden");
-document.getElementById("completeName").textContent=student;
-document.getElementById("done").scrollIntoView({behavior:"smooth",block:"start"});
-}else{
-fb.className="feedback wrong";
-fb.innerHTML="Please review: <strong>"+errors.join(", ")+"</strong>. Then try completing the investigation again.";
+function roundToTenth(value) {
+  return Math.round(value * 10) / 10;
 }
+
+function createSvg(width, height, label) {
+  const svg = document.createElementNS(SVG_NS, "svg");
+
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", label);
+
+  return svg;
 }
+
+function addLine(svg, x1, y1, x2, y2, options = {}) {
+  const line = document.createElementNS(SVG_NS, "line");
+
+  line.setAttribute("x1", x1);
+  line.setAttribute("y1", y1);
+  line.setAttribute("x2", x2);
+  line.setAttribute("y2", y2);
+  line.setAttribute("stroke", options.stroke || "#0f2d44");
+  line.setAttribute("stroke-width", options.width || 3);
+
+  svg.appendChild(line);
+
+  return line;
+}
+
+function addPolygon(svg, points, options = {}) {
+  const polygon =
+    document.createElementNS(SVG_NS, "polygon");
+
+  polygon.setAttribute(
+    "points",
+    points.map((point) => point.join(",")).join(" ")
+  );
+
+  polygon.setAttribute("fill", options.fill || "none");
+  polygon.setAttribute(
+    "fill-opacity",
+    options.opacity || "1"
+  );
+
+  polygon.setAttribute(
+    "stroke",
+    options.stroke || "#0f2d44"
+  );
+
+  polygon.setAttribute(
+    "stroke-width",
+    options.width || 3
+  );
+
+  svg.appendChild(polygon);
+
+  return polygon;
+}
+
+function addText(svg, value, x, y, options = {}) {
+  const text = document.createElementNS(SVG_NS, "text");
+
+  text.setAttribute("x", x);
+  text.setAttribute("y", y);
+  text.setAttribute(
+    "text-anchor",
+    options.anchor || "middle"
+  );
+
+  text.setAttribute(
+    "fill",
+    options.fill || "#1f2933"
+  );
+
+  text.setAttribute(
+    "font-size",
+    options.size || 17
+  );
+
+  text.setAttribute(
+    "font-weight",
+    options.weight || "normal"
+  );
+
+  text.textContent = value;
+
+  svg.appendChild(text);
+
+  return text;
+}
+
+function addRightAngle(svg, x, y, size) {
+  const path =
+    document.createElementNS(SVG_NS, "polyline");
+
+  path.setAttribute(
+    "points",
+    `${x},${y - size} ${x + size},${y - size} ${x + size},${y}`
+  );
+
+  path.setAttribute("fill", "none");
+  path.setAttribute("stroke", "#0f2d44");
+  path.setAttribute("stroke-width", "3");
+
+  svg.appendChild(path);
+}
+
+function addAngleArc(svg, cx, cy, radius, startAngle, endAngle) {
+  const start = {
+    x: cx + radius * Math.cos(startAngle),
+    y: cy + radius * Math.sin(startAngle)
+  };
+
+  const end = {
+    x: cx + radius * Math.cos(endAngle),
+    y: cy + radius * Math.sin(endAngle)
+  };
+
+  const path = document.createElementNS(SVG_NS, "path");
+
+  path.setAttribute(
+    "d",
+    `M ${start.x} ${start.y} A ${radius} ${radius} 0 0 1 ${end.x} ${end.y}`
+  );
+
+  path.setAttribute("fill", "none");
+  path.setAttribute("stroke", "#f2b705");
+  path.setAttribute("stroke-width", "6");
+
+  svg.appendChild(path);
+}
+
+function generateTriangle() {
+  const triple = randomChoice([
+    { AC: 3, BC: 4, AB: 5 },
+    { AC: 5, BC: 12, AB: 13 },
+    { AC: 6, BC: 8, AB: 10 },
+    { AC: 8, BC: 15, AB: 17 },
+    { AC: 7, BC: 24, AB: 25 },
+    { AC: 9, BC: 12, AB: 15 }
+  ]);
+
+  const missingSide =
+    randomChoice(["AC", "BC", "AB"]);
+
+  const givenSides =
+    ["AC", "BC", "AB"].filter(
+      (side) => side !== missingSide
+    );
+
+  const angleA =
+    roundToTenth(
+      Math.atan(triple.BC / triple.AC) *
+      180 /
+      Math.PI
+    );
+
+  const angleB =
+    roundToTenth(90 - angleA);
+
+  return {
+    ...triple,
+    missingSide,
+    givenSides,
+    angleA,
+    angleB
+  };
+}
+
+function createTriangleDiagram(data) {
+  const svg = createSvg(
+    760,
+    450,
+    "Right triangle ABC with right angle at C"
+  );
+
+  const maximumLeg =
+    Math.max(data.AC, data.BC);
+
+  const scale =
+    Math.min(500 / data.AC, 270 / data.BC);
+
+  const A = {
+    x: 95,
+    y: 350
+  };
+
+  const C = {
+    x: A.x + data.AC * scale,
+    y: 350
+  };
+
+  const B = {
+    x: C.x,
+    y: C.y - data.BC * scale
+  };
+
+  addPolygon(
+    svg,
+    [
+      [A.x, A.y],
+      [C.x, C.y],
+      [B.x, B.y]
+    ],
+    {
+      fill: "#2f80a8",
+      opacity: "0.10",
+      stroke: "#0f2d44",
+      width: 5
+    }
+  );
+
+  addRightAngle(svg, C.x, C.y, 25);
+
+  addText(svg, "A", A.x - 20, A.y + 28, {
+    size: 21,
+    weight: "bold"
+  });
+
+  addText(svg, "C", C.x + 22, C.y + 28, {
+    size: 21,
+    weight: "bold"
+  });
+
+  addText(svg, "B", B.x + 22, B.y - 8, {
+    size: 21,
+    weight: "bold"
+  });
+
+  const horizontalLabel =
+    data.missingSide === "AC"
+      ? "AC = x"
+      : `AC = ${data.AC}`;
+
+  const verticalLabel =
+    data.missingSide === "BC"
+      ? "BC = x"
+      : `BC = ${data.BC}`;
+
+  const hypotenuseLabel =
+    data.missingSide === "AB"
+      ? "AB = x"
+      : `AB = ${data.AB}`;
+
+  addText(
+    svg,
+    horizontalLabel,
+    (A.x + C.x) / 2,
+    390,
+    {
+      size: 18,
+      weight: "bold",
+      fill:
+        data.missingSide === "AC"
+          ? "#2f80a8"
+          : "#0f2d44"
+    }
+  );
+
+  addText(
+    svg,
+    verticalLabel,
+    C.x + 65,
+    (B.y + C.y) / 2,
+    {
+      size: 18,
+      weight: "bold",
+      fill:
+        data.missingSide === "BC"
+          ? "#2f80a8"
+          : "#0f2d44"
+    }
+  );
+
+  addText(
+    svg,
+    hypotenuseLabel,
+    (A.x + B.x) / 2 - 25,
+    (A.y + B.y) / 2 - 18,
+    {
+      size: 18,
+      weight: "bold",
+      fill:
+        data.missingSide === "AB"
+          ? "#2f80a8"
+          : "#0f2d44"
+    }
+  );
+
+  addAngleArc(
+    svg,
+    A.x,
+    A.y,
+    55,
+    -Math.atan2(A.y - B.y, B.x - A.x),
+    0
+  );
+
+  addText(svg, "θ", A.x + 55, A.y - 18, {
+    size: 23,
+    weight: "bold",
+    fill: "#8a5a00"
+  });
+
+  addText(
+    svg,
+    "Reference angle: ∠A",
+    380,
+    35,
+    {
+      size: 19,
+      weight: "bold",
+      fill: "#8a5a00"
+    }
+  );
+
+  return svg;
+}
+
+function getGivenPairText(data) {
+  return data.givenSides.join(" and ");
+}
+
+function getEquationData(data) {
+  if (data.missingSide === "AB") {
+    return {
+      correct: "AB² = AC² + BC²",
+      choices: [
+        ["AB² = AC² + BC²", "AB² = AC² + BC²"],
+        ["AB² = AC² − BC²", "AB² = AC² − BC²"],
+        ["AC² = AB² + BC²", "AC² = AB² + BC²"],
+        ["BC² = AB² + AC²", "BC² = AB² + AC²"]
+      ],
+      reason:
+        "The hypotenuse must be longer than either leg."
+    };
+  }
+
+  if (data.missingSide === "AC") {
+    return {
+      correct: "AC² = AB² − BC²",
+      choices: [
+        ["AC² = AB² − BC²", "AC² = AB² − BC²"],
+        ["AC² = AB² + BC²", "AC² = AB² + BC²"],
+        ["AB² = AC² − BC²", "AB² = AC² − BC²"],
+        ["BC² = AB² − AC²", "BC² = AB² − AC²"]
+      ],
+      reason:
+        "A leg must be positive and shorter than the hypotenuse."
+    };
+  }
+
+  return {
+    correct: "BC² = AB² − AC²",
+    choices: [
+      ["BC² = AB² − AC²", "BC² = AB² − AC²"],
+      ["BC² = AB² + AC²", "BC² = AB² + AC²"],
+      ["AB² = BC² − AC²", "AB² = BC² − AC²"],
+      ["AC² = AB² − BC²", "AC² = AB² − BC²"]
+    ],
+    reason:
+      "A leg must be positive and shorter than the hypotenuse."
+  };
+}
+
+function createRadioQuestion(question, index, prefix) {
+  const wrapper = document.createElement("div");
+  const fieldset = document.createElement("fieldset");
+  const legend = document.createElement("legend");
+  const choices = document.createElement("div");
+  const feedback = document.createElement("div");
+
+  wrapper.className = "question";
+
+  legend.textContent =
+    `${index + 1}. ${question.prompt}`;
+
+  choices.className = "choices";
+
+  shuffle(question.choices).forEach(([text, value]) => {
+    const label = document.createElement("label");
+    const input = document.createElement("input");
+    const span = document.createElement("span");
+
+    label.className = "choice";
+
+    input.type = "radio";
+    input.name = `${prefix}-${index}`;
+    input.value = value;
+
+    span.textContent = text;
+
+    label.appendChild(input);
+    label.appendChild(span);
+    choices.appendChild(label);
+  });
+
+  feedback.className = "feedback";
+  feedback.setAttribute("aria-live", "polite");
+
+  fieldset.appendChild(legend);
+  fieldset.appendChild(choices);
+
+  wrapper.appendChild(fieldset);
+  wrapper.appendChild(feedback);
+
+  return wrapper;
+}
+
+function createNumberQuestion(question, index, prefix) {
+  const wrapper = document.createElement("div");
+  const label = document.createElement("label");
+  const input = document.createElement("input");
+  const feedback = document.createElement("div");
+
+  wrapper.className = "question";
+
+  label.htmlFor = `${prefix}-${index}`;
+  label.textContent =
+    `${index + 1}. ${question.prompt}`;
+
+  input.className = "number-input";
+  input.id = `${prefix}-${index}`;
+  input.name = `${prefix}-${index}`;
+  input.type = "number";
+  input.step = question.step || "any";
+  input.placeholder =
+    question.placeholder || "Enter a number";
+
+  feedback.className = "feedback";
+  feedback.setAttribute("aria-live", "polite");
+
+  wrapper.appendChild(label);
+  wrapper.appendChild(input);
+  wrapper.appendChild(feedback);
+
+  return wrapper;
+}
+
+function buildMissions() {
+  const equationData =
+    getEquationData(triangleData);
+
+  const missingValue =
+    triangleData[triangleData.missingSide];
+
+  const reasonChoices =
+    triangleData.missingSide === "AB"
+      ? [
+          [
+            "The hypotenuse must be longer than either leg.",
+            "correct"
+          ],
+          [
+            "The hypotenuse must be shorter than both legs.",
+            "wrong1"
+          ],
+          [
+            "All three sides must have the same length.",
+            "wrong2"
+          ],
+          [
+            "The missing side must equal the sum of the legs.",
+            "wrong3"
+          ]
+        ]
+      : [
+          [
+            "A leg must be positive and shorter than the hypotenuse.",
+            "correct"
+          ],
+          [
+            "A leg must be longer than the hypotenuse.",
+            "wrong1"
+          ],
+          [
+            "The missing leg must equal the hypotenuse.",
+            "wrong2"
+          ],
+          [
+            "The missing leg must be negative.",
+            "wrong3"
+          ]
+        ];
+
+  return [
+    {
+      title: "Investigation 1: Analyze the Given Information",
+      brief:
+        "Identify what is known, what is missing, and the best first method.",
+      diagram: () => createTriangleDiagram(triangleData),
+      questions: [
+        {
+          type: "radio",
+          prompt: "Which two side measurements are given?",
+          answer: getGivenPairText(triangleData),
+          choices: [
+            ["AC and BC", "AC and BC"],
+            ["AC and AB", "AC and AB"],
+            ["BC and AB", "BC and AB"],
+            ["Only one side is given", "one side"]
+          ]
+        },
+        {
+          type: "radio",
+          prompt: "Which side is missing?",
+          answer: triangleData.missingSide,
+          choices: [
+            ["AC", "AC"],
+            ["BC", "BC"],
+            ["AB", "AB"],
+            ["No side is missing", "none"]
+          ]
+        },
+        {
+          type: "radio",
+          prompt:
+            "Which method should be used first to find the missing side?",
+          answer: "Pythagorean Theorem",
+          choices: [
+            [
+              "Pythagorean Theorem",
+              "Pythagorean Theorem"
+            ],
+            ["Inverse tangent", "Inverse tangent"],
+            ["Angle addition", "Angle addition"],
+            ["Distance formula", "Distance formula"]
+          ]
+        }
+      ]
+    },
+
+    {
+      title: "Investigation 2: Find the Missing Side",
+      brief:
+        "Use the Pythagorean Theorem. Enter the exact side length.",
+      diagram: () => createTriangleDiagram(triangleData),
+      questions: [
+        {
+          type: "radio",
+          prompt:
+            "Which equation correctly isolates the missing side?",
+          answer: equationData.correct,
+          choices: equationData.choices
+        },
+        {
+          type: "number",
+          prompt:
+            `What is the value of ${triangleData.missingSide}?`,
+          answer: missingValue,
+          tolerance: 0.01
+        },
+        {
+          type: "radio",
+          prompt:
+            "Which statement confirms that the side length is reasonable?",
+          answer: "correct",
+          choices: reasonChoices
+        }
+      ]
+    },
+
+    {
+      title: "Investigation 3: Find the Missing Angles",
+      brief:
+        "Use inverse tangent to find ∠A, then use the complementary-angle relationship to find ∠B. Round angles to the nearest tenth.",
+      diagram: () => createTriangleDiagram(triangleData),
+      questions: [
+        {
+          type: "radio",
+          prompt:
+            "Which expression correctly finds the measure of ∠A?",
+          answer: "tan⁻¹(BC ÷ AC)",
+          choices: [
+            [
+              "tan⁻¹(BC ÷ AC)",
+              "tan⁻¹(BC ÷ AC)"
+            ],
+            [
+              "tan⁻¹(AC ÷ BC)",
+              "tan⁻¹(AC ÷ BC)"
+            ],
+            [
+              "tan(BC ÷ AC)",
+              "tan(BC ÷ AC)"
+            ],
+            [
+              "90 − (BC ÷ AC)",
+              "90 − (BC ÷ AC)"
+            ]
+          ]
+        },
+        {
+          type: "number",
+          prompt:
+            "What is m∠A, rounded to the nearest tenth?",
+          answer: triangleData.angleA,
+          tolerance: 0.05,
+          step: "0.1"
+        },
+        {
+          type: "number",
+          prompt:
+            "What is m∠B, rounded to the nearest tenth?",
+          answer: triangleData.angleB,
+          tolerance: 0.05,
+          step: "0.1"
+        }
+      ]
+    },
+
+    {
+      title: "Investigation 4: Method and Reasonableness Check",
+      brief:
+        "Show that you understand why each solving method works.",
+      diagram: () => createTriangleDiagram(triangleData),
+      questions: [
+        {
+          type: "radio",
+          prompt:
+            "Why was the Pythagorean Theorem appropriate for finding the missing side?",
+          answer: "two sides",
+          choices: [
+            [
+              "Two side lengths of a right triangle were known.",
+              "two sides"
+            ],
+            [
+              "One acute angle was known.",
+              "one angle"
+            ],
+            [
+              "The triangle was equilateral.",
+              "equilateral"
+            ],
+            [
+              "The two acute angles were congruent.",
+              "congruent"
+            ]
+          ]
+        },
+        {
+          type: "radio",
+          prompt:
+            "Why is an inverse trigonometric function used to find an angle?",
+          answer: "angle from ratio",
+          choices: [
+            [
+              "It finds an angle from a known side ratio.",
+              "angle from ratio"
+            ],
+            [
+              "It finds a side without using any measurements.",
+              "side"
+            ],
+            [
+              "It changes a right triangle into an acute triangle.",
+              "changes"
+            ],
+            [
+              "It proves all triangles are similar.",
+              "similar"
+            ]
+          ]
+        },
+        {
+          type: "radio",
+          prompt:
+            "Why must the two acute angles add to 90°?",
+          answer: "triangle sum",
+          choices: [
+            [
+              "A triangle totals 180°, and the right angle already measures 90°.",
+              "triangle sum"
+            ],
+            [
+              "All acute angles measure 45°.",
+              "forty-five"
+            ],
+            [
+              "The sides form a proportion.",
+              "proportion"
+            ],
+            [
+              "The Pythagorean Theorem requires it.",
+              "pythagorean"
+            ]
+          ]
+        }
+      ]
+    }
+  ];
+}
+
+const masteryQuestions = [
+  {
+    type: "radio",
+    prompt:
+      "You know two side lengths of a right triangle and need the third side. Which method is usually the best starting point?",
+    answer: "Pythagorean Theorem",
+    choices: [
+      [
+        "Pythagorean Theorem",
+        "Pythagorean Theorem"
+      ],
+      ["Inverse sine", "Inverse sine"],
+      ["Angle bisector theorem", "Angle bisector"],
+      ["Slope formula", "Slope"]
+    ]
+  },
+  {
+    type: "radio",
+    prompt:
+      "You know the opposite and adjacent sides and need an angle. Which expression should you use?",
+    answer: "inverse tangent",
+    choices: [
+      ["Inverse tangent", "inverse tangent"],
+      ["Tangent", "tangent"],
+      ["Pythagorean Theorem", "pythagorean"],
+      ["Angle sum only", "angle sum"]
+    ]
+  },
+  {
+    type: "number",
+    prompt:
+      "A right triangle has a hypotenuse of 13 and one leg of 5. What is the length of the other leg?",
+    answer: 12,
+    tolerance: 0.01
+  },
+  {
+    type: "number",
+    prompt:
+      "One acute angle of a right triangle measures 37.4°. What is the measure of the other acute angle?",
+    answer: 52.6,
+    tolerance: 0.05,
+    step: "0.1"
+  }
+];
+
+function renderQuestion(question, index, prefix) {
+  return question.type === "number"
+    ? createNumberQuestion(question, index, prefix)
+    : createRadioQuestion(question, index, prefix);
+}
+
+function startActivity() {
+  const enteredName =
+    normalizeName(studentNameInput.value);
+
+  if (!validFullName(enteredName)) {
+    nameFeedback.textContent =
+      "Enter both your first and last name before beginning.";
+
+    studentNameInput.focus();
+    return;
+  }
+
+  studentName = enteredName;
+  triangleData = generateTriangle();
+  missions = buildMissions();
+
+  currentMissionIndex = 0;
+  completedMissions.clear();
+
+  introSection.classList.add("hidden");
+  activitySection.classList.remove("hidden");
+
+  renderMission();
+
+  window.scrollTo({
+    top: activitySection.offsetTop - 10,
+    behavior: "smooth"
+  });
+}
+
+function renderMission() {
+  const mission = missions[currentMissionIndex];
+
+  missionContainer.innerHTML = "";
+  missionFeedback.textContent = "";
+  missionFeedback.className = "feedback";
+
+  checkMissionButton.disabled = false;
+  nextMissionButton.disabled = true;
+
+  const heading = document.createElement("h2");
+  const brief = document.createElement("div");
+  const diagram = document.createElement("div");
+  const note = document.createElement("p");
+
+  heading.textContent = mission.title;
+
+  brief.className = "mission-brief";
+  brief.textContent = mission.brief;
+
+  diagram.className = "diagram";
+  diagram.appendChild(mission.diagram());
+
+  note.className = "diagram-note";
+  note.textContent =
+    "Use the labels and values. Do not estimate from the drawing.";
+
+  missionContainer.appendChild(heading);
+  missionContainer.appendChild(brief);
+  missionContainer.appendChild(diagram);
+  missionContainer.appendChild(note);
+
+  mission.questions.forEach((question, index) => {
+    missionContainer.appendChild(
+      renderQuestion(
+        question,
+        index,
+        `mission-${currentMissionIndex}`
+      )
+    );
+  });
+
+  nextMissionButton.textContent =
+    currentMissionIndex === missions.length - 1
+      ? "Continue to Final Check"
+      : "Next Investigation";
+
+  updateProgress();
+}
+
+function evaluateRadioQuestion(
+  wrapper,
+  question,
+  index,
+  prefix
+) {
+  const checked = wrapper.querySelector(
+    `input[name="${prefix}-${index}"]:checked`
+  );
+
+  return (
+    checked &&
+    checked.value === String(question.answer)
+  );
+}
+
+function evaluateNumberQuestion(
+  wrapper,
+  question,
+  index,
+  prefix
+) {
+  const input = wrapper.querySelector(
+    `input[name="${prefix}-${index}"]`
+  );
+
+  if (!input || input.value.trim() === "") {
+    return false;
+  }
+
+  const entered = Number(input.value);
+  const tolerance =
+    question.tolerance === undefined
+      ? 0.001
+      : question.tolerance;
+
+  return (
+    Number.isFinite(entered) &&
+    Math.abs(entered - question.answer) <= tolerance
+  );
+}
+
+function evaluateQuestion(
+  wrapper,
+  question,
+  index,
+  prefix
+) {
+  const feedback =
+    wrapper.querySelector(".feedback");
+
+  wrapper.classList.remove(
+    "correct",
+    "incorrect"
+  );
+
+  const correct =
+    question.type === "number"
+      ? evaluateNumberQuestion(
+          wrapper,
+          question,
+          index,
+          prefix
+        )
+      : evaluateRadioQuestion(
+          wrapper,
+          question,
+          index,
+          prefix
+        );
+
+  if (correct) {
+    wrapper.classList.add("correct");
+    feedback.textContent = "Correct.";
+    feedback.className = "feedback good";
+  } else {
+    wrapper.classList.add("incorrect");
+    feedback.textContent =
+      "Not yet. Recheck the given information, equation, calculator setup, or rounding.";
+    feedback.className = "feedback bad";
+  }
+
+  return correct;
+}
+
+function checkMission() {
+  const mission = missions[currentMissionIndex];
+
+  const wrappers = [
+    ...missionContainer.querySelectorAll(".question")
+  ];
+
+  let correctCount = 0;
+
+  wrappers.forEach((wrapper, index) => {
+    if (
+      evaluateQuestion(
+        wrapper,
+        mission.questions[index],
+        index,
+        `mission-${currentMissionIndex}`
+      )
+    ) {
+      correctCount += 1;
+    }
+  });
+
+  if (correctCount === mission.questions.length) {
+    completedMissions.add(currentMissionIndex);
+
+    missionFeedback.textContent =
+      "Investigation complete. All three responses are correct.";
+
+    missionFeedback.className = "feedback good";
+
+    checkMissionButton.disabled = true;
+    nextMissionButton.disabled = false;
+
+    updateProgress();
+    nextMissionButton.focus();
+
+    return;
+  }
+
+  const remaining =
+    mission.questions.length - correctCount;
+
+  missionFeedback.textContent =
+    `${correctCount} of ${mission.questions.length} are correct. Correct the remaining ${remaining} response${remaining === 1 ? "" : "s"} and check again.`;
+
+  missionFeedback.className = "feedback bad";
+}
+
+function advanceMission() {
+  if (!completedMissions.has(currentMissionIndex)) {
+    return;
+  }
+
+  currentMissionIndex += 1;
+
+  if (currentMissionIndex < missions.length) {
+    renderMission();
+
+    window.scrollTo({
+      top: activitySection.offsetTop - 10,
+      behavior: "smooth"
+    });
+
+    return;
+  }
+
+  showMastery();
+}
+
+function updateProgress() {
+  const completed =
+    completedMissions.size;
+
+  const percent =
+    Math.round((completed / 4) * 75);
+
+  document.getElementById(
+    "progress-fill"
+  ).style.width = `${percent}%`;
+
+  document.getElementById(
+    "progress-track"
+  ).setAttribute(
+    "aria-valuenow",
+    String(percent)
+  );
+
+  document.getElementById(
+    "progress-label"
+  ).textContent =
+    currentMissionIndex < 4
+      ? `Investigation ${currentMissionIndex + 1} of 4`
+      : "Investigations complete";
+
+  const labels = [
+    "Analyze",
+    "Missing Side",
+    "Missing Angles",
+    "Reasonableness",
+    "Final Check",
+    "Certificate"
+  ];
+
+  for (let index = 0; index < 6; index += 1) {
+    const step =
+      document.getElementById(`trail-${index}`);
+
+    step.classList.remove("active", "done");
+    step.textContent = labels[index];
+
+    if (index < completed) {
+      step.classList.add("done");
+      step.textContent = `${labels[index]} ✓`;
+    } else if (index === currentMissionIndex) {
+      step.classList.add("active");
+    }
+  }
+}
+
+function showMastery() {
+  activitySection.classList.add("hidden");
+  masterySection.classList.remove("hidden");
+
+  masteryContainer.innerHTML = "";
+  masteryFeedback.textContent = "";
+  masteryFeedback.className = "feedback";
+
+  checkMasteryButton.disabled = false;
+
+  masteryQuestions.forEach((question, index) => {
+    masteryContainer.appendChild(
+      renderQuestion(
+        question,
+        index,
+        "mastery"
+      )
+    );
+  });
+
+  document.getElementById("trail-4")
+    .classList.add("active");
+
+  window.scrollTo({
+    top: masterySection.offsetTop - 10,
+    behavior: "smooth"
+  });
+}
+
+function checkMastery() {
+  const wrappers = [
+    ...masteryContainer.querySelectorAll(".question")
+  ];
+
+  let correctCount = 0;
+
+  wrappers.forEach((wrapper, index) => {
+    if (
+      evaluateQuestion(
+        wrapper,
+        masteryQuestions[index],
+        index,
+        "mastery"
+      )
+    ) {
+      correctCount += 1;
+    }
+  });
+
+  if (correctCount === masteryQuestions.length) {
+    masteryFeedback.textContent =
+      "Final mastery check complete. Your certificate is ready.";
+
+    masteryFeedback.className = "feedback good";
+    checkMasteryButton.disabled = true;
+
+    setTimeout(showCertificate, 400);
+
+    return;
+  }
+
+  const remaining =
+    masteryQuestions.length - correctCount;
+
+  masteryFeedback.textContent =
+    `${correctCount} of ${masteryQuestions.length} are correct. Correct the remaining ${remaining} response${remaining === 1 ? "" : "s"} and check again.`;
+
+  masteryFeedback.className = "feedback bad";
+}
+
+function createVerificationCode(name, date) {
+  const datePart = [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0")
+  ].join("");
+
+  const source =
+    `${name.toUpperCase()}|${datePart}|GEO-U4L2|12|4`;
+
+  let hash = 2166136261;
+
+  for (let index = 0; index < source.length; index += 1) {
+    hash ^= source.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  const hashPart = (hash >>> 0)
+    .toString(36)
+    .toUpperCase()
+    .padStart(7, "0")
+    .slice(0, 7);
+
+  return `GEO-U4L2-${datePart}-${hashPart}`;
+}
+
+function showCertificate() {
+  masterySection.classList.add("hidden");
+  certificateSection.classList.remove("hidden");
+
+  const now = new Date();
+
+  document.getElementById(
+    "certificate-name"
+  ).textContent = studentName;
+
+  document.getElementById(
+    "certificate-date"
+  ).textContent =
+    now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+
+  document.getElementById(
+    "verification-code"
+  ).textContent =
+    createVerificationCode(studentName, now);
+
+  document.getElementById("trail-4")
+    .classList.remove("active");
+
+  document.getElementById("trail-4")
+    .classList.add("done");
+
+  document.getElementById(
+    "trail-4"
+  ).textContent = "Final Check ✓";
+
+  document.getElementById("trail-5")
+    .classList.add("done");
+
+  document.getElementById(
+    "trail-5"
+  ).textContent = "Certificate ✓";
+
+  window.scrollTo({
+    top: certificateSection.offsetTop - 10,
+    behavior: "smooth"
+  });
+}
+
+document.getElementById("start-button")
+  .addEventListener("click", startActivity);
+
+studentNameInput.addEventListener(
+  "keydown",
+  (event) => {
+    if (event.key === "Enter") {
+      startActivity();
+    }
+  }
+);
+
+checkMissionButton.addEventListener(
+  "click",
+  checkMission
+);
+
+nextMissionButton.addEventListener(
+  "click",
+  advanceMission
+);
+
+checkMasteryButton.addEventListener(
+  "click",
+  checkMastery
+);
+
+document.getElementById("print-button")
+  .addEventListener(
+    "click",
+    () => window.print()
+  );
+
+document.getElementById("restart-button")
+  .addEventListener(
+    "click",
+    () => window.location.reload()
+  );
 </script>
 </body>
 </html>
